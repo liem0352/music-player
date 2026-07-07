@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.LoveMusicMapper">
+
+    <!--  使 LoveMusic 类和 lovemusic 表里的字段对应上  -->
+    <resultMap id="base" type="com.example.demo.model.LoveMusic">
+        <id column="love_id" property="loveId"></id>
+        <result column="user_id" property="userId"></result>
+        <result column="music_id" property="musicId"></result>
+    </resultMap>
+
+    <!--  查看当前用户是否收藏该音乐 根据 userid 和 musicid 来查询  -->
+    <select id="getLoveMusicByUidAndMid" resultMap="base">
+        select * from lovemusic where user_id = #{userid} and music_id = #{musicid}
+    </select>
+
+    <!--  添加 lovemusic 数据  -->
+    <insert id="addLoveMusic">
+        insert into lovemusic(user_id,music_id) values(#{userid},#{musicid})
+    </insert>
+
+    <!--  查询收藏的音乐  -->
+    <select id="getMusicSingleOrList" resultMap="com.example.demo.mapper.MusicMapper.base">
+        select m.*,u.uid u_uid,u.username u_username,u.status u_status
+        from music m
+        left join lovemusic lm on lm.music_id = m.mid
+        left join user u on m.uid = u.uid where lm.user_id = #{userid}
+        <!--  如果有歌名传过来，就说明需要根据歌名进行模糊查询  -->
+        <if test="musicname != null">
+            and m.mname like concat('%',#{musicname},'%')
+        </if>
+        order by m.createtime desc
+    </select>
+
+    <!--  取消收藏音乐  -->
+    <delete id="removeCollectMusic">
+        delete from lovemusic where user_id = #{userid} and music_id = #{musicid}
+    </delete>
+
+    <!--  通过 musicId 批量删除收藏记录  -->
+    <delete id="removeCollectMusicByMusicId">
+        delete from lovemusic where music_id = #{musicid}
+    </delete>
+</mapper>

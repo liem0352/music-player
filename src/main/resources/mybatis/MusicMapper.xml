@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MusicMapper">
+
+        <!--  上传音乐  -->
+        <insert id="upload">
+            insert into music(mname,msinger,url,uid) values(#{mname},#{msinger},#{url},#{uid})
+        </insert>
+
+        <!--  如果有 歌名 和 歌手，就通过 歌名和歌手查询。如果有 id 就根据 id 来查询  -->
+        <select id="getMusicByNameAndSingerOrId" resultType="com.example.demo.model.Music">
+            select * from music where
+            <!-- 直接走这里表示通过 music名 和 歌手 获取对象 -->
+            <if test="mname != null">
+                mname = #{mname}
+            </if>
+            <if test="msinger != null">
+                and msinger = #{msinger}
+            </if>
+
+            <!-- 进入这里说明 是通过id获取 music对象 -->
+            <if test="mid != null">
+                mid = #{mid}
+            </if>
+
+            <!-- 进入这里说明 传过来的 id 为 null -->
+            <if test="mid == null and mname == null and msinger == null">
+                mid = -1;
+            </if>
+        </select>
+
+        <!--    删除单个音乐    -->
+        <delete id="deleteMusicById" >
+            delete from music where mid = #{mid}
+        </delete>
+
+
+        <resultMap id="base" type="com.example.demo.model.Music">
+            <id column="mid" property="mid"></id>
+            <result column="mname" property="mname"></result>
+            <result column="msinger" property="msinger"></result>
+            <result column="createtime" property="createtime"></result>
+            <result column="url" property="url"></result>
+            <result column="uid" property="uid"></result>
+            <association property="userInfo"
+                         resultMap="com.example.demo.mapper.UserMapper.base"
+                         columnPrefix="u_">
+            </association>
+        </resultMap>
+
+
+        <!--  查询音乐（可以根据名称查，也可查全部。支持模糊查询）  -->
+        <select id="getMusicByNameOrAll" resultMap="base">
+            select m.*,u.uid u_uid,u.username u_username,u.status u_status from music m left join user u on m.uid = u.uid
+            <where>
+                <if test="mname != null">
+                    mname like concat('%',#{mname},'%')
+                </if>
+            </where>
+            order by m.createtime desc
+        </select>
+
+</mapper>

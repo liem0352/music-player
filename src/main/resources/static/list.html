@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- 网页使用的语言 -->
+<html lang="zh-CN">
+<head>
+    <!-- 指定字符集 -->
+    <meta charset="utf-8">
+    <!-- 使用Edge最新的浏览器的渲染方式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="shortcut icon" href="#" />
+    <link href="./css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/list.css">
+    <link rel="stylesheet" href="./fonts/iconfont.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/paging.css">
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+
+    <title>在线音乐馆</title>
+</head>
+
+<body id="body" class="logobg_style">
+    <div id="large-header" class="large-header login-page">
+        <canvas id="demo-canvas" width="1590" height="711"></canvas>
+
+        <div class="login-form1">
+            <div class="myone" class="container">
+                <h3  style="text-align: center" id="getUserName"></h3>
+                
+                <div style="float: left;">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputName2">歌曲名</label>
+                            <input name="name" type="text" class="form-control" id="exampleInputName2" >
+                        </div>
+                        <button id="submit1" type="button" class="btn btn-primary" onclick="queryMusic(true)">查询</button>
+                    </form>
+                </div>
+                <div style="float: right;margin-bottom: 15px">
+                    <a class="btn btn-primary" href="loveMusic.html">喜欢列表</a>
+                    <a class="btn btn-primary" href="upload.html">添加歌曲</a>
+                    <a id="delete" class="btn btn-primary">删除选中</a>
+                    <a class="btn btn-primary" onclick="userCancel()">注销</a>
+                </div>
+                <table border="1" class="table table-bordered table-hover">
+                    <tr class="success">
+                        <th>选择</th>
+                        <th>歌名</th>
+                        <th>歌手</th>
+                        <th>贡献者</th>
+                        <th>上传时间</th>
+                        <th>歌曲</th>
+                        <th>操作</th>
+                    </tr>
+            
+                    <tbody id="info" valign="middle">
+                        <div style=" overflow: auto;" id="xiwen">
+                            <!-- 放音乐的地方 -->
+                        </div>
+                    </tbody>
+                </table>  
+              </div>
+        </div>
+
+        <!-- 分页按钮 -->
+        <div class="page-icon">
+            <button class="firstPage" onclick="first_click()" ><img src="./images/page-icon/left-end.png"/></button>
+            <button class="beforePage" onclick="prev_click()" ><img src="./images/page-icon/page-left.png"/></button>
+            <button class="canal">第<input id="currentPage" onchange="choose_page()" type="text" value="1" class="canal"/>页</button>
+            <button class="canal">/&nbsp;&nbsp;&nbsp;共<input id="totalPage" type="button" value="1" readonly="readonly" class="canal">页</button>
+            <button class="nextPage" onclick="next_click()"><img src="./images/page-icon/page-right.png"/></button>
+            <button class="lastPage" onclick="last_click()"><img src="./images/page-icon/right-end.png"/></button>			
+        </div>
+
+        <div class="mytwo">
+            <div id="player">
+                <!-- 歌曲信息模块 -->
+                <div id="player-content1">
+                    <!-- 歌曲名 -->
+                    <div class="music-name"></div>
+                    <!-- 歌手名 -->
+                    <div class="artist-name"></div>
+                    <!-- 歌曲时间 -->
+                    <div class="time">
+                        <!-- 当前播放的时间 -->
+                        <div class="current-time"></div>
+                        <!-- 歌曲总时长 -->
+                        <div class="total-time"></div>
+                    </div>
+                    <!-- 进度条 -->
+                    <div id="s-area">
+                        <!-- 鼠标移动到进度条上，显示的时间信息 -->
+                        <div id="ins-time"></div>
+                        <!-- 鼠标移动到进度条上，进度条变暗部分-->
+                        <div id="s-hover"></div>
+                        <!-- 表示当前歌曲播放进度的蓝色进度条 -->
+                        <div id="seek-bar"></div>
+                    </div>
+                </div>
+        
+                <!-- 控制模块 -->
+                <div id="player-content2">
+                    <!-- 左侧歌曲封面旋转模块 -->
+                    <div class="music-imgs">
+                        <!-- 封面图 -->
+                        <div class="img"></div>
+                        <!-- 歌曲缓冲时的提示文字 -->
+                        <div id="buffer-box">缓冲…</div>
+                    </div>
+                    <!-- 右侧歌曲操作模块 -->
+                    <div class="player-controls">
+                        <!-- 上一首按钮 -->
+                        <div class="btn prev iconfont">&#xe603;</div>
+                        <!-- 暂停/播放 按钮 -->
+                        <div class="btn play-pause icon-jiediankaishi iconfont"></div>
+                        <!-- 下一首按钮 -->
+                        <div class="btn next iconfont">&#xe602;</div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+    </div> 
+
+<script src="js/TweenLite/TweenLite.min.js"></script>
+<script src="js/TweenLite/EasePack.min.js"></script>
+<script src="js/TweenLite/demo-1.js"></script>
+
+</body>
+<script src="./js/index.js"></script>
+<script src="./js/list.js"></script>
+<script>
+    listLoad("music/getmusic?pageNum=1&pageSize=8");
+</script>
+</html>

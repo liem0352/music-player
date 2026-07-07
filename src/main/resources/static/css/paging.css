@@ -1,0 +1,47 @@
+.page-icon{	
+	/* all: initial; */
+	width: 700px;
+	margin: -55px auto 0;
+	font-size:0;
+	text-align:center;
+}
+.page-icon button {
+	border: none;
+	background-color: white;
+	padding:0px 10px 0px;
+	font-size:20px;
+}
+
+.page-icon button img {
+	width: 15px;
+	height: 15px;
+}
+#totalPage, #currentPage {
+	cursor: default;
+	border: none;
+	background-color: white;
+	padding:0px 10px 0px;
+	font-size:20PX;
+}
+#currentPage {
+	cursor: auto;
+	text-align: center;
+	width: 40px;
+}
+
+.page-icon>.firstPage{
+	background-color: white;
+}
+
+.page-icon>.beforePage{
+	background-color: white;
+}
+.page-icon>.canal{
+	background-color: white;
+}
+.page-icon>.nextPage{
+	background-color: white;
+}
+.page-icon>.lastPage{
+	background-color: white;
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 音乐API测试工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            word-break: break-all;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .info {
+            background: #cce5ff;
+            border-left-color: #004085;
+            color: #004085;
+        }
+        
+        .song-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .song-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .song-item:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .song-item.selected {
+            background: #667eea;
+            color: white;
+            border-color: #764ba2;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .status-ok {
+            background: #28a745;
+            color: white;
+        }
+        
+        .status-error {
+            background: #dc3545;
+            color: white;
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .loading::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 音乐API测试工具</h1>
+        
+        <!-- 连接配置 -->
+        <div class="card">
+            <h2>🔧 配置</h2>
+            <div class="form-group">
+                <label for="baseUrl">后端服务地址：</label>
+                <input type="url" id="baseUrl" value="http://localhost:8081" placeholder="http://localhost:8081">
+            </div>
+            <button onclick="testConnection()">🔍 测试连接</button>
+            <span id="connectionStatus" class="status-badge"></span>
+        </div>
+        
+        <!-- 快速测试 -->
+        <div class="card">
+            <h2>⚡ 快速测试（点击歌曲获取URL）</h2>
+            <p style="color: #666; margin-bottom: 15px;">选择一首歌，自动获取播放URL并试听：</p>
+            
+            <div class="song-list" id="songList"></div>
+            
+            <div id="quickResult" style="margin-top: 15px;"></div>
+        </div>
+        
+        <!-- 手动测试 -->
+        <div class="card">
+            <h2>🔬 手动测试API</h2>
+            <div class="form-group">
+                <label for="neteaseId">网易云音乐ID：</label>
+                <input type="text" id="neteaseId" value="186016" placeholder="输入网易云ID，例如：186016">
+            </div>
+            <button onclick="testGetUrl()">🎵 获取单个URL</button>
+            <button onclick="testBatchUrls()">📦 批量获取URL</button>
+            <button onclick="testHealth()">💚 健康检查</button>
+            
+            <div id="result" class="result info" style="display:none;"></div>
+        </div>
+        
+        <!-- 音频播放器 -->
+        <div class="card" id="playerCard" style="display:none;">
+            <h2>🎧 试听</h2>
+            <audio id="audioPlayer" controls></audio>
+            <div id="playerInfo" style="margin-top: 10px; color: #666;"></div>
+        </div>
+    </div>
+
+    <script>
+        // 内置歌曲列表
+        const songs = [
+            { id: 'cn-001', neteaseId: '186016', title: '晴天', artist: '周杰伦' },
+            { id: 'cn-002', neteaseId: '185868', title: '稻香', artist: '周杰伦' },
+            { id: 'cn-003', neteaseId: '185868', title: '青花瓷', artist: '周杰伦' },
+            { id: 'cn-004', neteaseId: '186017', title: '七里香', artist: '周杰伦' },
+            { id: 'cn-005', neteaseId: '287709', title: '平凡之路', artist: '朴树' },
+            { id: 'cn-006', neteaseId: '444809640', title: '成都', artist: '赵雷' },
+            { id: 'cn-007', neteaseId: '27599897', title: '南山南', artist: '马頔' },
+            { id: 'cn-008', neteaseId: '22437204', title: '董小姐', artist: '宋冬野' },
+            { id: 'cn-009', neteaseId: '528365698', title: '光年之外', artist: '邓紫棋' },
+            { id: 'cn-010', neteaseId: '1892528906', title: '孤勇者', artist: '陈奕迅' },
+            { id: 'cn-011', neteaseId: '1330348068', title: '起风了', artist: '买辣椒也用券' },
+            { id: 'cn-012', neteaseId: '1800720666', title: '漠河舞厅', artist: '柳爽' },
+            { id: 'cn-013', neteaseId: '459189067', title: '凉凉', artist: '张碧晨/杨宗纬' },
+            { id: 'cn-014', neteaseId: '418592218', title: '大鱼', artist: '周深' },
+            { id: 'cn-015', neteaseId: '29777968', title: '卷珠帘', artist: '霍尊' },
+            { id: 'cn-016', neteaseId: '109545', title: '光辉岁月', artist: 'Beyond' },
+            { id: 'cn-017', neteaseId: '109497', title: '海阔天空', artist: 'Beyond' }
+        ];
+        
+        // 初始化歌曲列表
+        function initSongList() {
+            const container = document.getElementById('songList');
+            container.innerHTML = songs.map((song, index) => `
+                <div class="song-item" onclick="quickTest('${song.neteaseId}', '${song.title}', '${song.artist}')">
+                    <strong>${index + 1}. ${song.title}</strong><br>
+                    <small>${song.artist}</small><br>
+                    <small style="color: #999;">ID: ${song.neteaseId}</small>
+                </div>
+            `).join('');
+        }
+        
+        // 获取基础URL
+        function getBaseUrl() {
+            return document.getElementById('baseUrl').value.replace(/\/$/, '');
+        }
+        
+        // 显示结果
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = `result ${type}`;
+            element.innerHTML = message;
+        }
+        
+        // 测试连接
+        async function testConnection() {
+            const baseUrl = getBaseUrl();
+            const statusEl = document.getElementById('connectionStatus');
+            
+            try {
+                showResult('result', '<div class="loading">正在连接服务器...</div>', 'info');
+                
+                const response = await fetch(`${baseUrl}/api/music/health`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    statusEl.textContent = '✅ 连接成功';
+                    statusEl.className = 'status-badge status-ok';
+                    showResult('result', `<pre>${JSON.stringify(data, null, 2)}</pre>`, 'success');
+                } else {
+                    throw new Error('服务异常');
+                }
+            } catch (error) {
+                statusEl.textContent = '❌ 连接失败';
+                statusEl.className = 'status-badge status-error';
+                showResult('result', `❌ 无法连接到服务器<br><br>错误信息：${error.message}<br><br>请确认：<br>1. 后端服务已启动<br>2. 地址和端口正确<br>3. 没有跨域问题`, 'error');
+            }
+        }
+        
+        // 快速测试
+        async function quickTest(neteaseId, title, artist) {
+            const baseUrl = getBaseUrl();
+            
+            try {
+                showResult('quickResult', `<div class="loading">正在获取《${title}》的播放链接...</div>`, 'info');
+                
+                const response = await fetch(`${baseUrl}/api/music/url/${neteaseId}`);
+                const data = await response.json();
+                
+                if (data.code === 200 && data.data) {
+                    showResult('quickResult', 
+                        `✅ 获取成功！<br>` +
+                        `<strong>歌曲：</strong>${title} - ${artist}<br>` +
+                        `<strong>ID：</strong>${neteaseId}<br>` +
+                        `<strong>URL：</strong><a href="${data.data}" target="_blank">${data.data.substring(0, 60)}...</a>`,
+                        'success'
+                    );
+                    
+                    // 显示播放器
+                    playAudio(data.data, `${title} - ${artist}`);
+                } else {
+                    throw new Error(data.msg || '未知错误');
+                }
+            } catch (error) {
+                showResult('quickResult', `❌ 获取失败：${error.message}`, 'error');
+            }
+        }
+        
+        // 测试获取单个URL
+        async function testGetUrl() {
+            const baseUrl = getBaseUrl();
+            const neteaseId = document.getElementById('neteaseId').value.trim();
+            
+            if (!neteaseId) {
+                alert('请输入网易云ID');
+                return;
+            }
+            
+            try {
+                showResult('result', '<div class="loading">正在请求...</div>', 'info');
+                
+                const startTime = Date.now();
+                const response = await fetch(`${baseUrl}/api/music/url/${neteaseId}`);
+                const endTime = Date.now();
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    showResult('result', 
+                        `✅ 成功！耗时：${endTime - startTime}ms<br><br>` +
+                        `<strong>请求ID：</strong>${neteaseId}<br>` +
+                        `<strong>返回URL：</strong><br><a href="${data.data}" target="_blank">${data.data}</a>`,
+                        'success'
+                    );
+                    
+                    playAudio(data.data, `ID: ${neteaseId}`);
+                } else {
+                    throw new Error(data.msg || '服务端错误');
+                }
+            } catch (error) {
+                showResult('result', `❌ 失败：${error.message}`, 'error');
+            }
+        }
+        
+        // 批量获取
+        async function testBatchUrls() {
+            const baseUrl = getBaseUrl();
+            const ids = songs.slice(0, 5).map(s => s.neteaseId).join(',');
+            
+            try {
+                showResult('result', '<div class="loading">批量获取中，请稍候...</div>', 'info');
+                
+                const response = await fetch(`${baseUrl}/api/music/urls?ids=${ids}`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    let html = `✅ 批量获取成功！共 ${Object.keys(data.data).size} 首<br><br>`;
+                    for (const [id, url] of Object.entries(data.data)) {
+                        const song = songs.find(s => s.neteaseId === id);
+                        const name = song ? `${song.title} - ${song.artist}` : id;
+                        html += `<strong>${name}</strong>: <a href="${url}" target="_blank">${url.substring(0, 50)}...</a><br>`;
+                    }
+                    showResult('result', html, 'success');
+                } else {
+                    throw new Error(data.msg || '批量获取失败');
+                }
+            } catch (error) {
+                showResult('result', `❌ 批量获取失败：${error.message}`, 'error');
+            }
+        }
+        
+        // 健康检查
+        async function testHealth() {
+            const baseUrl = getBaseUrl();
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/music/health`);
+                const data = await response.json();
+                
+                showResult('result', 
+                    `💚 健康检查结果<br><br>` +
+                    `<pre>${JSON.stringify(data, null, 2)}</pre>`,
+                    data.code === 200 ? 'success' : 'error'
+                );
+            } catch (error) {
+                showResult('result', `❌ 健康检查失败：${error.message}`, 'error');
+            }
+        }
+        
+        // 播放音频
+        function playAudio(url, title) {
+            const playerCard = document.getElementById('playerCard');
+            const player = document.getElementById('audioPlayer');
+            const playerInfo = document.getElementById('playerInfo');
+            
+            playerCard.style.display = 'block';
+            player.src = url;
+            playerInfo.innerHTML = `🎵 正在播放：<strong>${title}</strong>`;
+            
+            // 自动滚动到播放器
+            playerCard.scrollIntoView({ behavior: 'smooth' });
+            
+            // 尝试播放
+            player.play().catch(e => {
+                console.log('自动播放被阻止，需要用户交互');
+            });
+        }
+        
+        // 页面加载完成后初始化
+        window.onload = function() {
+            initSongList();
+            
+            // 自动测试连接
+            setTimeout(testConnection, 500);
+        };
+    </script>
+</body>
+</html>

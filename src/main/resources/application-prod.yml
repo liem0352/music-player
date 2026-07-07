@@ -1,0 +1,30 @@
+# 配置 mysql 驱动
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/onlinemusic?characterEncoding=utf8&useSSL=false
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+private:
+  key:
+    url: /root/online_music/private.txt
+
+public:
+  key:
+    url: /root/online_music/public.txt
+
+
+# 开启 mybatis sql 日志打印
+logging:
+  level:
+    com:
+      example:
+        demo: debug
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 音乐文件存放在服务器上的位置
+music:
+  path: /root/tomcat8/apache-tomcat-8.5.81/webapps/music/

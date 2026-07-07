@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="css/upload.css" rel="stylesheet" type="text/css">
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/upload.js"></script>
+<link rel="shortcut icon" href="#" />
+
+<title>上传音乐</title>
+</head>
+
+<body class="logobg_style">
+  	<div id="large-header" class="large-header login-page">
+  		<canvas id="demo-canvas" width="1590" height="711"></canvas>
+  		
+		<div class="login-form">
+
+                <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                    上传音乐：<input type="file" name="filename" id="file"/>
+                    歌手名: <label>
+                    <input type="text" name="singer" placeholder="请输入歌手名" id="singer"/>
+                    </label>
+                    <input type="button" value="上传" onclick="uploadMusic()"/>
+                    
+                </form>
+
+                <div id="pangdahai">
+                    <a href="list.html">回到首页</a>
+                </div>
+		</div>
+
+  	</div>
+<script src="js/TweenLite/TweenLite.min.js"></script>
+<script src="js/TweenLite/EasePack.min.js"></script>
+<script src="js/TweenLite/demo-1.js"></script>
+</body>
+</html>
+

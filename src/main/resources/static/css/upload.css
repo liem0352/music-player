@@ -1,0 +1,50 @@
+
+form{
+    display: flex;
+    height: 26px;
+}
+
+.large-header {
+    position: relative;
+    width: 100%;
+    background:url(../images/bg.jpg) no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+}
+.logobg_style .login-form {                       
+    position:absolute;
+    top: 70%;
+	font-family: "微软雅黑", Microsoft YaHei UI;
+	margin-top: -225px;
+	margin-left: -300px;
+	left: 50%;
+	z-index: 999;
+    -webkit-transition: all 550ms ease-in-out;
+    -moz-transition: all 550ms ease-in-out;
+    -o-transition: all 550ms ease-in-out;
+    transition: all 550ms ease-in-out;
+}
+
+#pangdahai{
+
+    color: black;
+    font-size: 40px;
+    margin-top: 110px;
+    text-align: center;
+    font-family: '楷体';
+    font-weight: 900;
+    text-decoration: none;
+    background-color:rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+}
+
+#pangdahai:hover{
+    color: yellow;
+}
+
+#pangdahai:active{
+    color: green;
+}
+

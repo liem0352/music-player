@@ -1,0 +1,104 @@
+/* 用户登录样式 */                   
+.large-header {
+    position: relative;
+    width: 100%;
+    background:url(../images/bg.jpg) no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+}
+.logobg_style .login-form {                       
+    position:absolute;
+    top: 50%;
+	font-family: "微软雅黑", Microsoft YaHei UI;
+	margin-top: -225px;
+	margin-left: -225px;
+	left: 50%;
+	z-index: 999;
+    -webkit-transition: all 550ms ease-in-out;
+    -moz-transition: all 550ms ease-in-out;
+    -o-transition: all 550ms ease-in-out;
+    transition: all 550ms ease-in-out;
+}
+.logobg_style .login-content {                   
+    position: relative;
+    width: 450px;
+	z-index: 999;
+	box-shadow: 0px 3px 6px #333333;
+	background: url(../images/bg_03.png) repeat;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+    -webkit-transition: all 550ms ease-in-out;
+    -moz-transition: all 550ms ease-in-out;
+    -o-transition: all 550ms ease-in-out;
+    transition: all 550ms ease-in-out;
+}
+.logobg_style .input-group-addon{ padding:6px 20px }  
+.logobg_style .login-content .title_name{ color: #ffffff; font-weight: bold}    
+.login_padding{padding: 15px 40px; position: relative}  
+.input-group .form-control{ height: 45px}    
+.logobg_style .input-group {                     
+    height:45px;
+	float: left;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.logobg_style a:hover{color: #ffffff}
+.logobg_style .form-group1{ margin-bottom: 25px; display: block}
+.logobg_style .input-group-addon i{background-size: 25px; position: absolute; left: 3px; top:7px; width: 30px; height: 30px;}
+.logobg_style .icon_user{background: url(../images/iconfont-yonghu.png) no-repeat 7px center;  }
+.logobg_style .icon_password{background: url(../images/iconfont-psw.png) no-repeat 7px center; }
+.logobg_style .icon_email{background: url(../images/email.png) no-repeat 7px center; }
+.btn-block{height: 45px; line-height:29px; font-size: 18px}
+.tishi,.tishis{ margin: 10px 0px; }
+
+
+/* 立即注册 与 忘记密码 文本靠右 */
+.textright{text-align: right}
+.forget{color: #ffffff; text-align: right}
+td, th {
+    text-align: center;
+}
+
+
+.login-form1 {     
+    height: 608px;
+    width: 850px;
+    background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 10px;
+
+    position:absolute;
+    top: 50%;
+	margin-top: -300px;
+	margin-left: -425px;
+	left: 50%;
+}
+
+.myone {     
+    width: 96%;
+    position:absolute;
+    top: 50%;
+	font-family: "微软雅黑", Microsoft YaHei UI;
+	margin-top: -300px;
+	margin-left: -408px;
+	left: 50%;
+	z-index: 999;
+    -webkit-transition: all 550ms ease-in-out;
+    -moz-transition: all 550ms ease-in-out;
+    -o-transition: all 550ms ease-in-out;
+    transition: all 550ms ease-in-out;
+}

@@ -1,0 +1,26 @@
+# 配置Springboot上传文件的大小，默认每个文件的配置最大为15Mb，单次请求的文件的总数不能大于100Mb
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 100MB
+
+
+# 配置SpringBoot项目的端口号
+server:
+  port: 8081
+
+
+# mybatis 的扫描路径
+mybatis:
+  mapper-locations: classpath:mybatis/**Mapper.xml
+
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<link href="css/css.css" rel="stylesheet" type="text/css">
+	<script src="./js/jquery-1.11.0.min.js"></script>
+	<script src="./js/register.js"></script>
+	<title>用户注册</title>
+</head>
+
+<body class="logobg_style">
+  	<div id="large-header" class="large-header login-page">
+  		<canvas id="demo-canvas" width="1590" height="711"></canvas>
+  		
+		<div class="login-form">
+
+			<!-- 登录窗口 -->
+			<div class="login-content">
+				<h1 class="title_name">用户注册</h1>
+
+
+				<!-- 具体输入框 -->
+				<div id="form_login" class="login_padding">
+
+					<!-- 用户名输入框 -->
+					<div class="form-group clearfix">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="icon_user"></i>
+							</div>
+
+							<input type="text" class="form-control" name="username" id="username" placeholder="用户名">
+						</div>
+					</div>
+
+					<!-- 密码输入框1 -->
+					<div class="form-group1 clearfix">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="icon_password"></i>
+							</div>
+							<input type="password" class="form-control" name="password1" id="password1"  autocomplete="off" placeholder="密码">
+						</div>
+					</div>
+
+					<!-- 密码输入框2 -->
+					<div class="form-group1 clearfix">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="icon_password"></i>
+							</div>
+							<input type="password" class="form-control" name="password2" id="password2" autocomplete="off" placeholder="确认密码">
+						</div>
+					</div>
+
+					<!-- 注册按钮 -->
+					<div class="form-group1">
+						<input type="button" class="btn btn-danger btn-block btn-login" value="注册" onClick="cliRegister()">
+							<i class="fa fa-sign-in"></i>
+					</div>
+
+					<!-- 注册跳转页 -->
+					<div class=" textright">
+						<a href="login.html" class="forget">
+								返回登录
+						</a>
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+
+  	</div>
+
+<script src="js/TweenLite/TweenLite.min.js"></script>
+<script src="js/TweenLite/EasePack.min.js"></script>
+<script src="js/TweenLite/demo-1.js"></script>
+</body>
+</html>
