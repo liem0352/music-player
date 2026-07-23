@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 140" width="100%" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">音乐播放器架构 — 请求流:拦截器 → Controller → Service → Mapper → MySQL</title>
+  <desc id="archDesc">架构示意图。用户请求经 LoginInterceptor 拦截器鉴权后进入 Spring MVC Controller,调用 Service 业务层,通过 MyBatis Mapper 持久化到 MySQL music_player 库;视图层由 Thymeleaf 渲染。对外 API 走 MusicApiController 独立通道。</desc>
+
+  <defs>
+    <marker id="archArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B6B7E"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect x="0" y="0" width="1200" height="140" rx="12" fill="#1A0F1F"/>
+
+  <!-- Interceptor gate (above Controller) -->
+  <g transform="translate(80 22)">
+    <rect x="0" y="0" width="160" height="28" rx="8" fill="#2A1F35" stroke="#7C5CFF" stroke-width="1"/>
+    <text x="80" y="18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#7C5CFF">LoginInterceptor</text>
+  </g>
+  <line x1="160" y1="50" x2="160" y2="66" stroke="#6B6B7E" stroke-width="1.5" marker-end="url(#archArrow)"/>
+
+  <!-- Controller -->
+  <g transform="translate(80 70)">
+    <rect x="0" y="0" width="160" height="40" rx="8" fill="#2A1F35" stroke="#C97064" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#E8E4D9">Controller</text>
+    <text x="80" y="34" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6B6B7E">Spring MVC</text>
+  </g>
+  <line x1="240" y1="90" x2="300" y2="90" stroke="#6B6B7E" stroke-width="1.5" marker-end="url(#archArrow)"/>
+
+  <!-- Service -->
+  <g transform="translate(320 70)">
+    <rect x="0" y="0" width="160" height="40" rx="8" fill="#2A1F35" stroke="#7C5CFF" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#E8E4D9">Service</text>
+    <text x="80" y="34" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6B6B7E">业务逻辑</text>
+  </g>
+  <line x1="480" y1="90" x2="540" y2="90" stroke="#6B6B7E" stroke-width="1.5" marker-end="url(#archArrow)"/>
+
+  <!-- Mapper -->
+  <g transform="translate(560 70)">
+    <rect x="0" y="0" width="160" height="40" rx="8" fill="#2A1F35" stroke="#7C5CFF" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#E8E4D9">Mapper</text>
+    <text x="80" y="34" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6B6B7E">MyBatis</text>
+  </g>
+  <line x1="720" y1="90" x2="780" y2="90" stroke="#6B6B7E" stroke-width="1.5" marker-end="url(#archArrow)"/>
+
+  <!-- MySQL -->
+  <g transform="translate(800 70)">
+    <rect x="0" y="0" width="160" height="40" rx="8" fill="#2A1F35" stroke="#C97064" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#E8E4D9">MySQL</text>
+    <text x="80" y="34" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#6B6B7E">music_player</text>
+  </g>
+
+  <!-- Thymeleaf view branch (dashed, below Controller) -->
+  <line x1="160" y1="110" x2="160" y2="126" stroke="#6B6B7E" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="180" y="130" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#6B6B7E">Thymeleaf 视图 · Bootstrap · jQuery · TweenLite</text>
+
+  <!-- External API note (right) -->
+  <text x="1144" y="130" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#7C5CFF">对外 API: MusicApiController</text>
+</svg>
