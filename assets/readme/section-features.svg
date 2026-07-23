@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 140" width="100%" role="img" aria-labelledby="featTitle featDesc">
+  <title id="featTitle">功能与播放能力</title>
+  <desc id="featDesc">功能章节头。左侧为章节标题 功能与播放能力 与一句说明 覆盖上传、在线播放、收藏与对外 API 的完整闭环;右侧为一组电紫音频波形 motif,呼应项目主题。</desc>
+
+  <defs>
+    <linearGradient id="featWave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0.90"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas -->
+  <rect x="0" y="0" width="1200" height="140" rx="16" fill="#1A0F1F"/>
+
+  <!-- Left: section headline -->
+  <g transform="translate(56 56)">
+    <line x1="0" y1="-12" x2="56" y2="-12" stroke="#C97064" stroke-width="2"/>
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="36" font-weight="700" fill="#E8E4D9">功能与播放能力</text>
+    <text x="0" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#6B6B7E">覆盖上传、在线播放、收藏与对外 API 的完整闭环</text>
+  </g>
+
+  <!-- Right: waveform motif -->
+  <g transform="translate(820 56)" fill="url(#featWave)">
+    <rect x="0"   y="20" width="3" height="8"  rx="1"/>
+    <rect x="10"  y="16" width="3" height="16" rx="1"/>
+    <rect x="20"  y="8"  width="3" height="32" rx="1"/>
+    <rect x="30"  y="18" width="3" height="12" rx="1"/>
+    <rect x="40"  y="4"  width="3" height="40" rx="1"/>
+    <rect x="50"  y="14" width="3" height="20" rx="1"/>
+    <rect x="60"  y="0"  width="3" height="48" rx="1"/>
+    <rect x="70"  y="12" width="3" height="24" rx="1"/>
+    <rect x="80"  y="18" width="3" height="12" rx="1"/>
+    <rect x="90"  y="6"  width="3" height="36" rx="1"/>
+    <rect x="100" y="14" width="3" height="20" rx="1"/>
+    <rect x="110" y="2"  width="3" height="44" rx="1"/>
+    <rect x="120" y="10" width="3" height="28" rx="1"/>
+    <rect x="130" y="18" width="3" height="12" rx="1"/>
+    <rect x="140" y="8"  width="3" height="32" rx="1"/>
+    <rect x="150" y="14" width="3" height="20" rx="1"/>
+    <rect x="160" y="20" width="3" height="8"  rx="1"/>
+    <rect x="170" y="12" width="3" height="24" rx="1"/>
+    <rect x="180" y="16" width="3" height="16" rx="1"/>
+    <rect x="190" y="22" width="3" height="4"  rx="1"/>
+    <rect x="200" y="10" width="3" height="28" rx="1"/>
+    <rect x="210" y="18" width="3" height="12" rx="1"/>
+    <rect x="220" y="6"  width="3" height="36" rx="1"/>
+    <rect x="230" y="14" width="3" height="20" rx="1"/>
+    <rect x="240" y="20" width="3" height="8"  rx="1"/>
+    <rect x="250" y="12" width="3" height="24" rx="1"/>
+    <rect x="260" y="16" width="3" height="16" rx="1"/>
+    <rect x="270" y="8"  width="3" height="32" rx="1"/>
+    <rect x="280" y="18" width="3" height="12" rx="1"/>
+    <rect x="290" y="22" width="3" height="4"  rx="1"/>
+    <rect x="300" y="14" width="3" height="20" rx="1"/>
+    <rect x="310" y="10" width="3" height="28" rx="1"/>
+    <rect x="320" y="20" width="3" height="8"  rx="1"/>
+  </g>
+</svg>

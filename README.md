@@ -1,12 +1,22 @@
 <p align="center">
-  <img src="assets/readme/hero.svg" alt="音乐播放器 — SpringBoot · MyBatis · MySQL · Thymeleaf" width="100%">
+  <img src="assets/readme/hero.svg" alt="音乐播放器 - SpringBoot · MyBatis · MySQL · Thymeleaf" width="100%">
 </p>
+
+---
+
+## 这是什么
+
+一个基于 **SpringBoot + MyBatis + MySQL** 的音乐播放器 Web 应用,支持音乐上传、在线播放、用户收藏,并提供对外音乐 API。前端使用 Thymeleaf + Bootstrap + jQuery,以 TweenLite 处理播放器动效。一个仓库跑通从持久化到音频可视化到对外接口的整条链路。
 
 ---
 
 ## 证据先于承诺
 
-播放器原生控件示意(音频波形 / 播放按钮 / 进度条 / 收藏心形)即上方 hero 右侧。下方是仓库中真实存在的代码文件与对外接口文档,而非空头承诺。
+下方左侧为播放器界面解剖,右侧为仓库中真实存在的代码文件与对外接口文档,而非空头承诺。
+
+<p align="center">
+  <img src="assets/readme/player-interface.svg" alt="播放器界面解剖 - 进度条 / 播放控制 / 音量 / 歌单 / 可视化区" width="100%">
+</p>
 
 ### Controller / Mapper 真实文件清单
 
@@ -22,15 +32,9 @@
 
 ### 文档
 
-- [`音乐播放器文档.md`](音乐播放器文档.md) — 项目说明与设计
-- [`MUSIC_API_使用指南.md`](MUSIC_API_使用指南.md) — 对外 API 调用指南
-- [`项目运行截图.md`](项目运行截图.md) — 运行效果截图
-
----
-
-## 这是什么
-
-一个基于 **SpringBoot + MyBatis + MySQL** 的音乐播放器 Web 应用,支持音乐上传、在线播放、用户收藏,并提供对外音乐 API。前端使用 Thymeleaf + Bootstrap + jQuery。
+- [`音乐播放器文档.md`](音乐播放器文档.md) - 项目说明与设计
+- [`MUSIC_API_使用指南.md`](MUSIC_API_使用指南.md) - 对外 API 调用指南
+- [`项目运行截图.md`](项目运行截图.md) - 运行效果截图
 
 ---
 
@@ -44,15 +48,27 @@
 
 ## 工作原理
 
+音频从一次 HTTP 请求到屏幕上的波形,要经过五个阶段。后端 SpringBoot 负责加载与流式输出,前端 HTML5 audio 负责缓冲与解码,TweenLite 驱动可视化动效。
+
 <p align="center">
-  <img src="assets/readme/section-architecture.svg" alt="架构:拦截器 → Controller → Service → Mapper → MySQL" width="100%">
+  <img src="assets/readme/audio-pipeline.svg" alt="音频流水线 - 加载音频 → 流式响应 → 浏览器缓冲 → 解码播放 → 可视化" width="100%">
 </p>
 
-请求流:用户请求 → `LoginInterceptor` 鉴权 → `Controller` 接收 → `Service` 处理业务 → `Mapper` 经 MyBatis 持久化 → `MySQL`;返回路径由 Thymeleaf 渲染视图。对外 API 走 `MusicApiController` 独立通道,与页面入口分离。
+请求流层面,用户请求先经 `LoginInterceptor` 鉴权,再进入 Spring MVC `Controller`,调用 `Service` 业务层,通过 MyBatis `Mapper` 持久化到 `MySQL`;返回路径由 Thymeleaf 渲染视图。对外 API 走 `MusicApiController` 独立通道,与页面入口分离。
+
+<p align="center">
+  <img src="assets/readme/section-architecture.svg" alt="架构 - 请求流:拦截器 → Controller → Service → Mapper → MySQL" width="100%">
+</p>
 
 ---
 
 ## 快速开始
+
+三步跑起来:导入表结构、启动 Spring Boot 服务、浏览器访问登录页。
+
+<p align="center">
+  <img src="assets/readme/terminal-usage.svg" alt="快速启动 - 数据库导入、Maven 启动与本地访问" width="100%">
+</p>
 
 ### 1. 建库
 
@@ -80,6 +96,24 @@ mvn spring-boot:run
 
 - 登录页:http://localhost:8080/login.html
 - 音乐列表:http://localhost:8080/list.html
+
+---
+
+## 功能与播放能力
+
+覆盖上传、在线播放、收藏与对外 API 的完整闭环。下方先看功能矩阵,再看歌单从入库到切歌的完整路径。
+
+<p align="center">
+  <img src="assets/readme/section-features.svg" alt="功能与播放能力" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/feature-matrix.svg" alt="功能矩阵 - 播放控制与项目核心能力" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/playlist-flow.svg" alt="歌单流程 - 添加 → 排序 → 播放 → 切歌" width="100%">
+</p>
 
 ---
 
@@ -128,4 +162,6 @@ pom.xml                           # Maven 依赖
 
 ---
 
-作者:**liem**
+<p align="center">
+  <img src="assets/readme/footer.svg" alt="README 签名 - 作者 liem · 基于 Spring Boot 构建" width="100%">
+</p>

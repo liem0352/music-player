@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" role="img" aria-labelledby="heroTitle heroDesc">
-  <title id="heroTitle">音乐播放器 — SpringBoot · MyBatis · MySQL</title>
-  <desc id="heroDesc">音乐播放器项目封面。左侧为标题块:项目名音乐播放器与技术栈 SpringBoot · MyBatis · MySQL · Thymeleaf;右侧为播放器控件示意,含专辑封面占位、砖红圆形播放按钮、电紫音频波形、进度条与收藏心形。</desc>
+  <title id="heroTitle">音乐播放器 - SpringBoot · MyBatis · MySQL · Thymeleaf</title>
+  <desc id="heroDesc">音乐播放器项目封面。左侧为标题块:项目名音乐播放器与技术栈 SpringBoot · MyBatis · MySQL · Thymeleaf,下方为功能要点 上传 · 播放 · 收藏 · 对外 API。右侧为播放器界面 motif,含正在播放标签、专辑封面占位、砖红圆形播放按钮、电紫音频波形、进度条与收藏心形。</desc>
 
   <defs>
     <linearGradient id="albumGrad" x1="0" y1="0" x2="1" y2="1">
@@ -8,9 +8,9 @@
       <stop offset="100%" stop-color="#1A0F1F"/>
     </linearGradient>
     <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.35"/>
+      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.30"/>
       <stop offset="50%" stop-color="#7C5CFF" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0.30"/>
     </linearGradient>
   </defs>
 
@@ -18,73 +18,79 @@
   <rect x="0" y="0" width="1200" height="360" rx="26" fill="#1A0F1F"/>
 
   <!-- Left: title block -->
-  <g transform="translate(56 48)">
+  <g transform="translate(56 56)">
     <text x="0" y="18" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="2" fill="#7C5CFF">SPRING BOOT · MUSIC PLAYER</text>
-    <text x="0" y="82" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="44" font-weight="700" fill="#E8E4D9">音乐播放器</text>
-    <text x="0" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#6B6B7E">SpringBoot · MyBatis · MySQL · Thymeleaf</text>
-    <text x="0" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#6B6B7E">上传 · 播放 · 收藏 · 对外 API</text>
-    <line x1="0" y1="178" x2="64" y2="178" stroke="#C97064" stroke-width="2"/>
+    <text x="0" y="86" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="48" font-weight="700" fill="#E8E4D9">音乐播放器</text>
+    <text x="0" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#6B6B7E">SpringBoot · MyBatis · MySQL · Thymeleaf</text>
+    <text x="0" y="158" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" fill="#E8E4D9">上传 · 播放 · 收藏 · 对外 API</text>
+    <line x1="0" y1="186" x2="72" y2="186" stroke="#C97064" stroke-width="2"/>
   </g>
 
-  <!-- Right: player controls mock -->
-  <g transform="translate(720 48)">
-    <rect x="0" y="0" width="424" height="264" rx="12" fill="none" stroke="#2A1F35" stroke-width="1"/>
+  <!-- Right: player interface motif -->
+  <g transform="translate(700 48)">
+    <rect x="0" y="0" width="444" height="264" rx="14" fill="none" stroke="#2A1F35" stroke-width="1"/>
+
+    <!-- NOW PLAYING label + track name -->
+    <text x="20" y="28" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" letter-spacing="1.5" fill="#6B6B7E">NOW PLAYING</text>
+    <text x="20" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="600" fill="#E8E4D9">深夜电台 · Demo Track</text>
 
     <!-- Album cover placeholder -->
-    <g transform="translate(122 20)">
-      <rect x="0" y="0" width="180" height="180" rx="12" fill="url(#albumGrad)" stroke="#2A1F35" stroke-width="1"/>
-      <circle cx="90" cy="90" r="72" fill="none" stroke="#2A1F35" stroke-width="1"/>
-      <circle cx="90" cy="90" r="36" fill="#C97064"/>
-      <path d="M 80 74 L 80 106 L 108 90 Z" fill="#1A0F1F"/>
+    <g transform="translate(132 70)">
+      <rect x="0" y="0" width="180" height="120" rx="10" fill="url(#albumGrad)" stroke="#2A1F35" stroke-width="1"/>
+      <circle cx="90" cy="60" r="48" fill="none" stroke="#2A1F35" stroke-width="1"/>
+      <circle cx="90" cy="60" r="30" fill="#C97064"/>
+      <path d="M 82 48 L 82 72 L 104 60 Z" fill="#1A0F1F"/>
     </g>
 
-    <!-- Audio waveform: 30 bars, width 4, spacing 8, heights 8-36 centered in 40px band -->
-    <g transform="translate(20 210)" fill="url(#waveGrad)">
-      <rect x="0"   y="16" width="4" height="8"  rx="1"/>
-      <rect x="12"  y="13" width="4" height="14" rx="1"/>
-      <rect x="24"  y="9"  width="4" height="22" rx="1"/>
-      <rect x="36"  y="14" width="4" height="12" rx="1"/>
-      <rect x="48"  y="6"  width="4" height="28" rx="1"/>
-      <rect x="60"  y="11" width="4" height="18" rx="1"/>
-      <rect x="72"  y="4"  width="4" height="32" rx="1"/>
-      <rect x="84"  y="8"  width="4" height="24" rx="1"/>
-      <rect x="96"  y="12" width="4" height="16" rx="1"/>
-      <rect x="108" y="5"  width="4" height="30" rx="1"/>
-      <rect x="120" y="10" width="4" height="20" rx="1"/>
-      <rect x="132" y="2"  width="4" height="36" rx="1"/>
-      <rect x="144" y="7"  width="4" height="26" rx="1"/>
-      <rect x="156" y="13" width="4" height="14" rx="1"/>
-      <rect x="168" y="9"  width="4" height="22" rx="1"/>
-      <rect x="180" y="3"  width="4" height="34" rx="1"/>
-      <rect x="192" y="11" width="4" height="18" rx="1"/>
-      <rect x="204" y="14" width="4" height="12" rx="1"/>
-      <rect x="216" y="6"  width="4" height="28" rx="1"/>
-      <rect x="228" y="10" width="4" height="20" rx="1"/>
-      <rect x="240" y="4"  width="4" height="32" rx="1"/>
-      <rect x="252" y="12" width="4" height="16" rx="1"/>
-      <rect x="264" y="8"  width="4" height="24" rx="1"/>
-      <rect x="276" y="15" width="4" height="10" rx="1"/>
-      <rect x="288" y="7"  width="4" height="26" rx="1"/>
-      <rect x="300" y="11" width="4" height="18" rx="1"/>
-      <rect x="312" y="5"  width="4" height="30" rx="1"/>
-      <rect x="324" y="9"  width="4" height="22" rx="1"/>
-      <rect x="336" y="13" width="4" height="14" rx="1"/>
-      <rect x="348" y="16" width="4" height="8"  rx="1"/>
+    <!-- Audio waveform: 36 bars, width 4, spacing 8, heights 8-32 centered in 40px band -->
+    <g transform="translate(20 204)" fill="url(#waveGrad)">
+      <rect x="0"   y="26" width="4" height="8"  rx="1"/>
+      <rect x="12"  y="22" width="4" height="14" rx="1"/>
+      <rect x="24"  y="16" width="4" height="22" rx="1"/>
+      <rect x="36"  y="24" width="4" height="10" rx="1"/>
+      <rect x="48"  y="12" width="4" height="28" rx="1"/>
+      <rect x="60"  y="20" width="4" height="16" rx="1"/>
+      <rect x="72"  y="8"  width="4" height="32" rx="1"/>
+      <rect x="84"  y="18" width="4" height="20" rx="1"/>
+      <rect x="96"  y="22" width="4" height="14" rx="1"/>
+      <rect x="108" y="10" width="4" height="30" rx="1"/>
+      <rect x="120" y="18" width="4" height="18" rx="1"/>
+      <rect x="132" y="4"  width="4" height="36" rx="1"/>
+      <rect x="144" y="14" width="4" height="24" rx="1"/>
+      <rect x="156" y="22" width="4" height="14" rx="1"/>
+      <rect x="168" y="16" width="4" height="22" rx="1"/>
+      <rect x="180" y="6"  width="4" height="34" rx="1"/>
+      <rect x="192" y="20" width="4" height="16" rx="1"/>
+      <rect x="204" y="24" width="4" height="10" rx="1"/>
+      <rect x="216" y="12" width="4" height="28" rx="1"/>
+      <rect x="228" y="18" width="4" height="18" rx="1"/>
+      <rect x="240" y="8"  width="4" height="32" rx="1"/>
+      <rect x="252" y="22" width="4" height="14" rx="1"/>
+      <rect x="264" y="16" width="4" height="22" rx="1"/>
+      <rect x="276" y="26" width="4" height="8"  rx="1"/>
+      <rect x="288" y="14" width="4" height="24" rx="1"/>
+      <rect x="300" y="20" width="4" height="16" rx="1"/>
+      <rect x="312" y="10" width="4" height="30" rx="1"/>
+      <rect x="324" y="18" width="4" height="18" rx="1"/>
+      <rect x="336" y="24" width="4" height="12" rx="1"/>
+      <rect x="348" y="16" width="4" height="22" rx="1"/>
+      <rect x="360" y="22" width="4" height="14" rx="1"/>
+      <rect x="372" y="12" width="4" height="28" rx="1"/>
+      <rect x="384" y="20" width="4" height="16" rx="1"/>
+      <rect x="396" y="26" width="4" height="8"  rx="1"/>
+      <rect x="408" y="18" width="4" height="20" rx="1"/>
     </g>
 
-    <!-- Progress bar at ~40% -->
-    <g transform="translate(20 250)">
-      <line x1="0" y1="0" x2="360" y2="0" stroke="#2A1F35" stroke-width="2" stroke-linecap="round"/>
-      <line x1="0" y1="0" x2="144" y2="0" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="144" cy="0" r="5" fill="#C97064"/>
+    <!-- Progress bar at ~40% with time labels -->
+    <g transform="translate(20 248)">
+      <line x1="0" y1="0" x2="404" y2="0" stroke="#2A1F35" stroke-width="2" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="162" y2="0" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="162" cy="0" r="5" fill="#C97064"/>
     </g>
 
-    <!-- Favorite heart icon (bottom-right) -->
-    <g transform="translate(388 242)">
+    <!-- Favorite heart icon (top-right) -->
+    <g transform="translate(408 30)">
       <path d="M 8 14 C 8 14 1 9 1 5 C 1 2.8 2.8 1 5 1 C 6.4 1 7.5 1.8 8 3 C 8.5 1.8 9.6 1 11 1 C 13.2 1 15 2.8 15 5 C 15 9 8 14 8 14 Z" fill="#C97064"/>
     </g>
   </g>
-
-  <!-- Footer mono -->
-  <text x="56" y="340" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6B6B7E">作者 liem · Spring Boot · MySQL 9.4</text>
 </svg>
